@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1220"/>
+  <path d="M0 0H1200V630H0V0Z" fill="url(#grid)"/>
+  <rect x="650" y="132" width="368" height="300" rx="18" fill="#111A2E" stroke="#1E40AF"/>
+  <rect x="688" y="176" width="118" height="74" rx="10" fill="#0B1220" stroke="#22D3EE" stroke-opacity=".45"/>
+  <rect x="828" y="176" width="150" height="74" rx="10" fill="#0B1220" stroke="#00D084" stroke-opacity=".45"/>
+  <path d="M690 346C730 294 768 324 808 282C856 232 888 298 928 248C960 208 980 230 1000 196" stroke="#22D3EE" stroke-width="6" stroke-linecap="round"/>
+  <text x="120" y="240" fill="#FFFFFF" font-family="Inter, Arial" font-size="68" font-weight="800">Selmore Digital</text>
+  <text x="120" y="318" fill="#CBD5E1" font-family="Inter, Arial" font-size="34">Building Brands. Driving Growth.</text>
+  <text x="120" y="370" fill="#CBD5E1" font-family="Inter, Arial" font-size="34">Automating Success.</text>
+  <rect x="120" y="424" width="310" height="58" rx="10" fill="#00D084"/>
+  <text x="154" y="463" fill="#0B1220" font-family="Inter, Arial" font-size="22" font-weight="700">Digital Growth Partner</text>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#22D3EE" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+</svg>
