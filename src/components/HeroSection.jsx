@@ -6,11 +6,11 @@ import AnimatedGradientBackground from "./AnimatedGradientBackground.jsx";
 import { brandAssets, trustIndicators } from "../data/siteData.js";
 
 const heroImages = [
-  brandAssets.heroVisual,
+  "/assets/direct/hero-ecommerce-dashboard.png",
+  "/assets/direct/about-team.jpg",
   "/assets/direct/website-growth-laptop.png",
-  "/assets/direct/analytics-dashboard-closeup.png",
-  "/assets/direct/ai-crm-workspace.png",
-  "/assets/direct/mobile-app-screens-direct.png",
+  "/assets/direct/branding-board-direct.png",
+  "/assets/direct/hero-workspace.jpg",
 ];
 
 export default function HeroSection() {
@@ -63,13 +63,13 @@ export default function HeroSection() {
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-green px-5 py-3 text-sm font-bold text-navy transition hover:bg-cyan"
             >
               <CalendarCheck className="h-5 w-5" />
-              Book Free Consultation
+              Book a Free Strategy Call
             </Link>
             <Link
-              to="/free-website-audit"
+              to="/portfolio"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 px-5 py-3 text-sm font-bold text-white transition hover:border-cyan hover:text-cyan"
             >
-              Get Growth Audit
+              Explore Our Work
               <ArrowRight className="h-5 w-5" />
             </Link>
           </motion.div>
@@ -117,3 +117,5 @@ export default function HeroSection() {
     </section>
   );
 }
+
+

@@ -79,3 +79,125 @@ select {
     padding-bottom: 7rem;
   }
 }
+
+/* ---------- Selmore Digital Logo Scroll Animation Styles ---------- */
+#fragment-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  perspective: 1400px;
+}
+
+#fragment-grid {
+  position: absolute;
+  width: clamp(112px, 13vw, 178px);
+  height: clamp(112px, 13vw, 178px);
+  left: 0;
+  top: 0;
+  display: grid;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+#fragment-grid .tile-wrap {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+#fragment-grid .tile {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.28));
+  transition: filter 0.3s ease;
+}
+
+#fragment-grid .tile:hover {
+  filter: drop-shadow(0 0 25px rgba(34, 211, 238, 0.55));
+}
+
+@media (max-width: 700px) {
+  #fragment-grid {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* Final Logo Rebuild Anchor in CTASection */
+#final-logo-anchor {
+  width: 260px;
+  height: 260px;
+  pointer-events: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#final-logo-anchor::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.25), rgba(30, 64, 175, 0.15) 42%, transparent 72%);
+  filter: blur(20px);
+  opacity: 0;
+  transform: scale(0.72);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#final-logo-anchor.is-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#final-logo-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.88);
+  filter: drop-shadow(0 0 32px rgba(34, 211, 238, 0.4));
+  will-change: transform, opacity;
+}
+
+#final-logo-anchor.is-visible #final-logo-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 700px) {
+  #final-logo-anchor {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* ---------- Preloader Styling ---------- */
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.preloader-bg-wash {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 700px 500px at 50% 50%, rgba(30, 64, 175, 0.25), transparent 70%),
+    radial-gradient(circle 350px at 50% 50%, rgba(34, 211, 238, 0.12), transparent 70%),
+    #0b1220;
+}
+
+

@@ -32,7 +32,7 @@ export default function ConversionPage({ page }) {
               ))}
             </div>
           </div>
-          <VisualImage src={brandAssets.heroVisual} alt={`${current.auditType} dashboard visual`} className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/analytics-dashboard-closeup.png" alt={`${current.auditType} analytics visual`} className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 
@@ -52,7 +52,7 @@ export default function ConversionPage({ page }) {
           <AuditForm auditType={current.auditType} />
         </div>
       </section>
-      <CTASection title="Book Strategy Call" primaryLabel="Book Consultation" primaryPath="/book-consultation" />
+      <CTASection title="Book Strategy Call" primaryLabel="Book a Free Strategy Call" primaryPath="/book-consultation" secondaryLabel="Explore Our Work" secondaryPath="/portfolio" />
     </>
   );
 }

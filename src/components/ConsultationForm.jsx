@@ -76,7 +76,7 @@ export default function ConsultationForm() {
         className="inline-flex items-center justify-center gap-2 rounded-lg bg-green px-5 py-3 text-sm font-bold text-navy transition hover:bg-cyan disabled:cursor-not-allowed disabled:opacity-70"
       >
         <CalendarCheck className="h-5 w-5" />
-        {status.type === "loading" ? "Requesting..." : "Book Free Consultation"}
+        {status.type === "loading" ? "Requesting..." : "Book a Free Strategy Call"}
       </button>
       {status.message && (
         <p className={`text-sm font-semibold ${status.type === "success" ? "text-green" : status.type === "error" ? "text-red-600" : "text-darkGray"}`}>

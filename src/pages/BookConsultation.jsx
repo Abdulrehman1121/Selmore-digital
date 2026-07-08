@@ -10,8 +10,8 @@ export default function BookConsultation() {
   return (
     <>
       <SEO
-        title="Book Free Consultation | Selmore Digital"
-        description="Book a free consultation with Selmore Digital for websites, marketing, branding, ecommerce, or AI automation."
+        title="Book a Free Strategy Call | Selmore Digital"
+        description="Book a free strategy call with Selmore Digital for websites, marketing, automation, and digital growth systems."
         path="/book-consultation"
         schema={localBusinessSchema}
       />
@@ -23,10 +23,10 @@ export default function BookConsultation() {
               Plan Your Next Move
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              A focused call for website, marketing, and AI clarity.
+              A focused call for website, marketing, AI automation, and growth clarity.
             </p>
           </div>
-          <VisualImage src={brandAssets.heroVisual} alt="Consultation growth dashboard visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/contact-crm-direct.png" alt="Consultation growth contact visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 

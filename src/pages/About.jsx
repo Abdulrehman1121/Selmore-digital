@@ -26,7 +26,7 @@ export default function About() {
               We build brands, lead systems, and AI-powered operations.
             </p>
           </div>
-          <VisualImage src={brandAssets.heroVisual} alt="Selmore Digital strategic growth dashboard visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/about-team.jpg" alt="Selmore Digital strategic growth showcase visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 

@@ -15,7 +15,7 @@ export default function NotFound() {
               Go Home
             </Link>
             <Link to="/book-consultation" className="rounded-lg border border-white/14 px-5 py-3 text-sm font-bold text-white transition hover:border-cyan hover:text-cyan">
-              Book Consultation
+              Book a Free Strategy Call
             </Link>
           </div>
         </div>

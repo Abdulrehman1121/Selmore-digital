@@ -15,7 +15,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3">
               <BrandLogo />
             </Link>
-            <p className="mt-5 max-w-sm text-base leading-8 text-slate-300">{tagline}</p>
+            <p className="mt-5 max-w-sm text-base leading-8 text-slate-300">Building websites, automation systems, marketing engines, and digital products for businesses ready to scale.</p>
             <div className="mt-6 flex gap-3">
               {[
                 ["LinkedIn", Linkedin],
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3 py-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
           <p>Copyright {new Date().getFullYear()} Selmore Digital. All rights reserved.</p>
-          <p>Built for Pakistan, UAE, UK, and USA growth markets.</p>
+          <p>{contactDetails.location}</p>
         </div>
       </div>
     </footer>

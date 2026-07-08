@@ -27,7 +27,7 @@ export default function Contact() {
               Tell us what you want to build, grow, or automate.
             </p>
           </div>
-          <VisualImage src={brandAssets.contactVisual} alt="Contact and consultation dashboard visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/contact-crm-direct.png" alt="Contact and consultation gateway visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 
@@ -35,7 +35,7 @@ export default function Contact() {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <ContactForm sourcePage="Contact" />
           <div className="space-y-5">
-            <VisualImage src={brandAssets.heroVisual} alt="Digital growth contact visual" className="aspect-[4/3] shadow-soft" />
+            <VisualImage src="/assets/direct/portfolio-mockups.jpg" alt="Digital growth contact portfolio visual" className="aspect-[4/3] shadow-soft" />
             {[
               ["Email", contactDetails.email, Mail],
               ["Phone", contactDetails.phone, Phone],

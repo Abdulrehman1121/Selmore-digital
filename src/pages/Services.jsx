@@ -27,7 +27,7 @@ export default function Services() {
             </p>
           </div>
           <VisualImage
-            src={brandAssets.heroVisual}
+            src="/assets/direct/hero-workspace.jpg"
             alt="Selmore Digital service ecosystem dashboard visual"
             className="aspect-[4/3] border border-white/10 shadow-glow"
             loading="eager"

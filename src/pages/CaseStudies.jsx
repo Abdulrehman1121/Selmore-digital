@@ -29,7 +29,7 @@ export default function CaseStudies() {
               Challenge, strategy, result. Clear and visual.
             </p>
           </div>
-          <VisualImage src={brandAssets.heroVisual} alt="Case study growth dashboard visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/analytics-dashboard-closeup.png" alt="Case study growth showcase visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
       <section className="section-pad bg-light px-4 sm:px-6 lg:px-8">

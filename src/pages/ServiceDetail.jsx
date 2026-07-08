@@ -34,7 +34,7 @@ export default function ServiceDetail() {
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">{detail.hero}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/book-consultation" className="inline-flex items-center justify-center gap-2 rounded-lg bg-green px-5 py-3 text-sm font-bold text-navy transition hover:bg-cyan">
-                Book Consultation
+                Book a Free Strategy Call
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/request-proposal" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/14 px-5 py-3 text-sm font-bold text-white transition hover:border-cyan hover:text-cyan">

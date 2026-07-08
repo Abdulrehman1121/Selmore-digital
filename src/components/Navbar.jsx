@@ -12,10 +12,17 @@ export default function Navbar() {
     setOpen(false);
   }, [location.pathname]);
 
+  const handleHomeClick = (e) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md shadow-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" onClick={handleHomeClick} className="flex items-center gap-3">
           <BrandLogo compact />
         </Link>
 
@@ -24,6 +31,7 @@ export default function Navbar() {
             <NavLink
               key={link.path}
               to={link.path}
+              onClick={link.path === "/" ? handleHomeClick : undefined}
               className={({ isActive }) => `nav-link text-sm font-semibold ${isActive ? "active" : ""}`}
               end={link.path === "/"}
             >
@@ -38,7 +46,7 @@ export default function Navbar() {
             className="inline-flex items-center gap-2 rounded-lg bg-green px-4 py-2.5 text-sm font-bold text-navy transition hover:bg-cyan"
           >
             <CalendarCheck className="h-4 w-4" />
-            Book Free Consultation
+            Book a Free Strategy Call
           </Link>
         </div>
 
@@ -57,13 +65,14 @@ export default function Navbar() {
       {open && (
         <div className="border-t border-white/10 bg-navy px-4 py-5 shadow-glow lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            <Link to="/" className="mb-3 rounded-lg border border-white/10 bg-white/[0.04] p-3">
+            <Link to="/" onClick={handleHomeClick} className="mb-3 rounded-lg border border-white/10 bg-white/[0.04] p-3">
               <BrandLogo />
             </Link>
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
+                onClick={link.path === "/" ? handleHomeClick : undefined}
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-3 text-sm font-semibold ${isActive ? "bg-white/10 text-white" : "text-slate-300"}`
                 }
@@ -77,7 +86,7 @@ export default function Navbar() {
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-green px-4 py-3 text-sm font-bold text-navy"
             >
               <CalendarCheck className="h-4 w-4" />
-              Book Free Consultation
+              Book a Free Strategy Call
             </Link>
           </div>
         </div>

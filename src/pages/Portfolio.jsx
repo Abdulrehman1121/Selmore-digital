@@ -37,7 +37,7 @@ export default function Portfolio() {
               Premium systems across brand, web, marketing, and AI.
             </p>
           </div>
-          <VisualImage src={brandAssets.heroVisual} alt="Portfolio dashboard visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
+          <VisualImage src="/assets/direct/portfolio-mockups.jpg" alt="Portfolio showcase visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 

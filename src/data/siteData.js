@@ -27,7 +27,7 @@ import {
   Workflow,
 } from "lucide-react";
 
-export const tagline = "Building Brands. Driving Growth. Automating Success.";
+export const tagline = "Digital Growth • AI Automation • Technology";
 
 export const brandAssets = {
   logo: "/assets/selmore-digital-logo.png",
@@ -47,22 +47,55 @@ export const navLinks = [
   { label: "Contact", path: "/contact" },
 ];
 
-export const trustIndicators = ["Strategy", "Design", "Growth", "Automation", "Results"];
+export const trustIndicators = ["Digital Growth", "AI Automation", "SEO", "Performance", "Automation"];
 
 export const stats = [
-  { value: "8+", label: "Growth services" },
-  { value: "5", label: "Core markets planned" },
-  { value: "24/7", label: "Automation mindset" },
-  { value: "100%", label: "Growth-first delivery" },
+  { value: "8+", label: "Growth Services" },
+  { value: "5+", label: "Core Markets" },
+  { value: "24/7", label: "Automation Mindset" },
+  { value: "100%", label: "Growth-Focused Delivery" },
 ];
 
 export const problems = [
-  "Low visibility",
-  "Weak conversions",
-  "Unclear brand",
-  "Manual workflows",
-  "Inconsistent content",
-  "No lead system",
+  "Customers expect seamless digital experiences",
+  "Search visibility changes every quarter",
+  "Advertising costs rise while conversions stall",
+  "AI is reshaping customer journeys and operations",
+  "Disconnected systems slow the business down",
+  "Growth demands a connected strategy",
+];
+
+export const growthSystems = [
+  {
+    title: "Revenue-Focused Websites",
+    icon: Code2,
+    description: "Websites designed to generate leads, build trust, and support long-term business growth.",
+  },
+  {
+    title: "Search Visibility",
+    icon: Search,
+    description: "SEO strategies that help your business get discovered by customers actively searching for your services.",
+  },
+  {
+    title: "Performance Marketing",
+    icon: Target,
+    description: "Google Ads, Meta Ads, and campaign systems built to turn attention into qualified leads.",
+  },
+  {
+    title: "AI Workforce",
+    icon: Bot,
+    description: "AI chatbots, assistants, workflows, and automation systems that save time and improve customer experience.",
+  },
+  {
+    title: "Mobile Experiences",
+    icon: Smartphone,
+    description: "Mobile applications designed to connect your business with customers on the devices they use every day.",
+  },
+  {
+    title: "Booking & Business Systems",
+    icon: Workflow,
+    description: "Smart booking systems, CRM workflows, and digital tools that reduce manual work and improve operations.",
+  },
 ];
 
 export const services = [
@@ -81,8 +114,8 @@ export const services = [
     slug: "ecommerce-development",
     path: "/services/ecommerce-development",
     icon: ShoppingBag,
-    description: "Stores designed to sell with clarity.",
-    benefits: ["Product grids", "Checkout flow", "Sales tracking"],
+    description: "Online stores designed to sell with clarity.",
+    benefits: ["Product Pages", "Checkout Flow", "Sales Tracking"],
     image: "/assets/direct/hero-ecommerce-dashboard.png",
     imageAlt: "Ecommerce storefront and checkout dashboard visual",
   },
@@ -395,49 +428,49 @@ export const industries = [
   {
     title: "Real Estate",
     icon: Building2,
-    description: "Premium lead systems.",
+    description: "Lead systems built for property growth.",
     image: "/assets/direct/analytics-dashboard-closeup.png",
     alt: "Real Estate digital growth visual"
   },
   {
     title: "Education",
     icon: GraduationCap,
-    description: "Enrollment growth systems.",
+    description: "Enrollment-focused digital systems.",
     image: "/assets/direct/social-content-planner.png",
     alt: "Education digital growth visual"
   },
   {
     title: "Manufacturing",
     icon: Cpu,
-    description: "B2B visibility engines.",
+    description: "B2B visibility and inquiry engines.",
     image: "/assets/direct/analytics-dashboard-closeup.png",
     alt: "Manufacturing digital growth visual"
   },
   {
     title: "Restaurants & Cafes",
     icon: Store,
-    description: "Local growth flows.",
+    description: "Local growth and customer engagement.",
     image: "/assets/direct/hero-ecommerce-dashboard.png",
     alt: "Restaurants & Cafes digital growth visual"
   },
   {
     title: "Beauty & Wellness",
     icon: Sparkles,
-    description: "Premium brand journeys.",
+    description: "Premium brand and booking journeys.",
     image: "/assets/direct/branding-board-direct.png",
     alt: "Beauty & Wellness digital growth visual"
   },
   {
     title: "Ecommerce",
     icon: ShoppingBag,
-    description: "Revenue-first stores.",
+    description: "Revenue-first online stores.",
     image: "/assets/direct/hero-ecommerce-dashboard.png",
     alt: "Ecommerce digital growth visual"
   },
   {
     title: "Professional Services",
     icon: BriefcaseBusiness,
-    description: "Authority-led growth.",
+    description: "Authority-led growth systems.",
     image: "/assets/direct/ai-crm-workspace.png",
     alt: "Professional Services digital growth visual"
   }
@@ -445,18 +478,17 @@ export const industries = [
 
 export const automationHighlights = [
   { title: "AI Chatbots", icon: Bot },
-  { title: "AI Agents", icon: BrainCircuit },
+  { title: "AI Assistants", icon: BrainCircuit },
   { title: "WhatsApp Automation", icon: Workflow },
   { title: "CRM Automation", icon: Users },
-  { title: "Workflow Automation", icon: Activity },
+  { title: "Lead Qualification", icon: Target },
+  { title: "Customer Support Automation", icon: HeartPulse },
 ];
 
 export const values = [
-  { title: "Growth", description: "Every strategy is tied to business outcomes, not vanity activity." },
-  { title: "Innovation", description: "We use modern technology and AI where it creates practical advantage." },
-  { title: "Excellence", description: "Design, code, copy, and systems are treated as premium business assets." },
-  { title: "Transparency", description: "Clients deserve clear priorities, reporting, and communication." },
-  { title: "Partnership", description: "We work as strategic collaborators, not one-off task vendors." },
+  { title: "Confidence", description: "Clear digital direction that helps teams move forward with certainty." },
+  { title: "Clarity", description: "No scattered marketing or confusing systems. Just focused growth direction." },
+  { title: "Progress", description: "Every project moves the business closer to measurable results." },
 ];
 
 export const processSteps = [
@@ -691,14 +723,16 @@ export const contactDetails = {
   email: "hello@selmoredigital.com",
   phone: "+92 300 0000000",
   whatsapp: "+92 300 0000000",
-  location: "Serving Pakistan, UAE, UK, and USA markets",
+  location: "Serving United States, Canada, and Pakistan.",
 };
 
 export const quickHighlights = [
-  { title: "Growth-first approach", icon: ChartNoAxesCombined },
-  { title: "Technology with purpose", icon: Cpu },
-  { title: "Results matter", icon: BarChart3 },
-  { title: "Partnership over projects", icon: BadgeCheck },
+  { title: "Growth-first strategy", icon: ChartNoAxesCombined },
+  { title: "Premium design and development", icon: Code2 },
+  { title: "AI-powered automation", icon: Cpu },
+  { title: "Transparent reporting", icon: ChartNoAxesCombined },
+  { title: "Long-term partnership", icon: Users },
+  { title: "Business-focused execution", icon: BadgeCheck },
 ];
 
 export const consultationBenefits = [

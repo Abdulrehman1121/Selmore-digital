@@ -4,6 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./styles/index.css";
 
+// Force browser to start at the top on every reload (essential for GSAP ScrollTrigger site stability)
+if (typeof window !== "undefined" && window.history && "scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
