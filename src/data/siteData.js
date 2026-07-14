@@ -32,19 +32,77 @@ export const tagline = "Digital Growth • AI Automation • Technology";
 export const brandAssets = {
   logo: "/assets/selmore-digital-logo.png",
   markAlt: "Selmore Digital official logo",
-  heroVisual: "/assets/direct/hero-ecommerce-dashboard.png",
+  heroVisual: "/assets/direct/growth-systems-meeting.jpg",
   contactVisual: "/assets/direct/contact-crm-direct.png",
 };
 
 export const navLinks = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Services", path: "/services" },
-  { label: "Industries", path: "/industries" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Case Studies", path: "/case-studies" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  {
+    label: "About",
+    path: "/about",
+    children: [
+      { label: "Company Overview", path: "/about" },
+      { label: "Why Selmore Digital", path: "/about" },
+      { label: "Process / Approach", path: "/about" },
+    ],
+  },
+  {
+    label: "Growth Systems",
+    path: "/growth-systems",
+    children: [
+      { label: "Website Design & Development", path: "/growth-systems/website-design-development" },
+      { label: "AI Solutions & Automation", path: "/growth-systems/ai-solutions-automation" },
+      { label: "Search Engine Optimization", path: "/growth-systems/search-engine-optimization" },
+      { label: "Performance Marketing", path: "/growth-systems/performance-marketing" },
+      { label: "Social Media Marketing", path: "/growth-systems/social-media-marketing" },
+      { label: "Brand Identity & Digital Experience", path: "/growth-systems/brand-identity-digital-experience" },
+      { label: "Selmore Creative", path: "/growth-systems/selmore-creative" },
+      { label: "Online Booking Systems", path: "/growth-systems/online-booking-systems" },
+      { label: "Digital Growth Strategy", path: "/growth-systems/digital-growth-strategy" },
+    ],
+  },
+  {
+    label: "Selected Work",
+    path: "/selected-work",
+    children: [
+      { label: "Growth Stories", path: "/selected-work/growth-stories" },
+      { label: "Projects", path: "/selected-work/projects" },
+      { label: "Case Studies", path: "/selected-work/case-studies" },
+    ],
+  },
+  {
+    label: "Industries",
+    path: "/industries",
+    children: [
+      { label: "Healthcare", path: "/industries/healthcare" },
+      { label: "Hospitality", path: "/industries/hospitality" },
+      { label: "Construction", path: "/industries/construction" },
+      { label: "Technology", path: "/industries/technology" },
+      { label: "Professional Services", path: "/industries/professional-services" },
+      { label: "Retail", path: "/industries/retail" },
+      { label: "Beauty", path: "/industries/beauty" },
+      { label: "Education", path: "/industries/education" },
+      { label: "Manufacturing", path: "/industries/manufacturing" },
+    ],
+  },
+  {
+    label: "Knowledge",
+    path: "/knowledge",
+    children: [
+      { label: "Insights", path: "/knowledge/insights" },
+      { label: "Resources", path: "/knowledge/resources" },
+      { label: "Growth Journal", path: "/knowledge/growth-journal" },
+    ],
+  },
+  {
+    label: "Contact",
+    path: "/contact",
+    children: [
+      { label: "Contact Page", path: "/contact" },
+      { label: "Book Your Growth Session", path: "/book-growth-session" },
+    ],
+  },
 ];
 
 export const trustIndicators = ["Digital Growth", "AI Automation", "SEO", "Performance", "Automation"];
@@ -67,102 +125,82 @@ export const problems = [
 
 export const growthSystems = [
   {
-    title: "Revenue-Focused Websites",
+    title: "Website Design & Development",
     icon: Code2,
-    description: "Websites designed to generate leads, build trust, and support long-term business growth.",
+    description: "Create beautiful, high-performing websites engineered for conversions, accessibility, and long-term scalability.",
   },
   {
-    title: "Search Visibility",
+    title: "Search Engine Optimization",
     icon: Search,
-    description: "SEO strategies that help your business get discovered by customers actively searching for your services.",
+    description: "Increase visibility through technical SEO, strategic content, and sustainable organic growth.",
   },
   {
     title: "Performance Marketing",
     icon: Target,
-    description: "Google Ads, Meta Ads, and campaign systems built to turn attention into qualified leads.",
+    description: "Generate measurable results with Google Ads, Meta Ads, LinkedIn campaigns, and landing page optimization.",
   },
   {
-    title: "AI Workforce",
+    title: "Social Media Marketing",
+    icon: Megaphone,
+    description: "Build meaningful relationships through strategic content, storytelling, and community engagement.",
+  },
+  {
+    title: "AI Solutions & Automation",
     icon: Bot,
-    description: "AI chatbots, assistants, workflows, and automation systems that save time and improve customer experience.",
+    description: "Automate repetitive work, improve efficiency, and unlock new business opportunities through AI.",
   },
   {
-    title: "Mobile Experiences",
+    title: "Mobile Apps & Booking Systems",
     icon: Smartphone,
-    description: "Mobile applications designed to connect your business with customers on the devices they use every day.",
-  },
-  {
-    title: "Booking & Business Systems",
-    icon: Workflow,
-    description: "Smart booking systems, CRM workflows, and digital tools that reduce manual work and improve operations.",
+    description: "Deliver seamless customer experiences through modern applications and intelligent booking platforms.",
   },
 ];
 
 export const services = [
   {
-    title: "Website Development",
+    title: "Website Design & Development",
     slug: "website-development",
-    path: "/services/website-development",
+    path: "/website-design-development",
     icon: Code2,
-    description: "Digital experiences built for growth.",
+    description: "Digital experiences built for conversion and growth.",
     benefits: ["Conversion UX", "Fast builds", "Lead capture"],
     image: "/assets/direct/website-growth-laptop.png",
     imageAlt: "Modern website dashboard and conversion interface",
   },
   {
-    title: "Ecommerce Development",
-    slug: "ecommerce-development",
-    path: "/services/ecommerce-development",
-    icon: ShoppingBag,
-    description: "Online stores designed to sell with clarity.",
-    benefits: ["Product Pages", "Checkout Flow", "Sales Tracking"],
-    image: "/assets/direct/hero-ecommerce-dashboard.png",
-    imageAlt: "Ecommerce storefront and checkout dashboard visual",
+    title: "Mobile App Development",
+    slug: "mobile-app-development",
+    path: "/mobile-app-development",
+    icon: Smartphone,
+    description: "Mobile products for customers and teams.",
+    benefits: ["iOS and Android", "App dashboards", "Customer flows"],
+    image: "/assets/direct/mobile-app-screens-direct.png",
+    imageAlt: "Mobile app screen mockups and dashboard interface visual",
   },
   {
-    title: "SEO Services",
-    slug: "seo-services",
-    path: "/services/seo-services",
-    icon: Search,
-    description: "Visibility for high-intent search.",
-    benefits: ["Local SEO", "Technical fixes", "Keyword growth"],
-    image: "/assets/direct/analytics-dashboard-closeup.png",
-    imageAlt: "Search ranking and SEO growth dashboard visual",
-  },
-  {
-    title: "Social Media Marketing",
-    slug: "social-media-marketing",
-    path: "/services/social-media-marketing",
-    icon: Megaphone,
-    description: "Content systems for trust and reach.",
-    benefits: ["Content calendar", "Reels creative", "Engagement data"],
-    image: "/assets/direct/social-content-planner.png",
-    imageAlt: "Social media calendar and engagement analytics visual",
-  },
-  {
-    title: "Performance Marketing",
-    slug: "performance-marketing",
-    path: "/services/performance-marketing",
-    icon: Target,
-    description: "Paid growth with measurable intent.",
-    benefits: ["Ad dashboards", "Funnels", "ROAS tracking"],
-    image: "/assets/direct/analytics-dashboard-closeup.png",
-    imageAlt: "Paid ads performance and conversion analytics visual",
-  },
-  {
-    title: "Branding & Creative",
+    title: "Branding & UI/UX",
     slug: "branding-design",
-    path: "/services/branding-design",
+    path: "/branding-ui-ux",
     icon: Palette,
     description: "Premium identities built for trust.",
-    benefits: ["Logo systems", "Brand boards", "Collateral"],
+    benefits: ["Logo systems", "Brand boards", "UI guidelines"],
     image: "/assets/direct/branding-board-direct.png",
     imageAlt: "Premium brand identity board with logo, color palette, and mockups",
   },
   {
-    title: "AI Automation",
+    title: "Booking Systems",
+    slug: "booking-systems",
+    path: "/booking-systems",
+    icon: CalendarCheck,
+    description: "Intelligent scheduling, calendars, and CRM workflow integrations.",
+    benefits: ["Calendar Syncing", "Secure Payment Gates", "Customer reminders"],
+    image: "/assets/direct/contact-crm-direct.png",
+    imageAlt: "Interactive online calendar booking dashboard visual",
+  },
+  {
+    title: "AI Solutions",
     slug: "ai-automation",
-    path: "/services/ai-automation",
+    path: "/ai-solutions",
     icon: Bot,
     description: "Intelligent workflows that scale response.",
     benefits: ["AI chatbots", "Agents", "CRM workflows"],
@@ -171,14 +209,34 @@ export const services = [
     featured: true,
   },
   {
-    title: "Mobile App Development",
-    slug: "mobile-app-development",
-    path: "/services/mobile-app-development",
-    icon: Smartphone,
-    description: "Mobile products for customers and teams.",
-    benefits: ["iOS and Android", "App dashboards", "Customer flows"],
-    image: "/assets/direct/mobile-app-screens-direct.png",
-    imageAlt: "Mobile app screen mockups and dashboard interface visual",
+    title: "SEO",
+    slug: "seo-services",
+    path: "/search-engine-optimization",
+    icon: Search,
+    description: "Visibility for high-intent search.",
+    benefits: ["Local SEO", "Technical fixes", "Keyword growth"],
+    image: "/assets/direct/analytics-dashboard-closeup.png",
+    imageAlt: "Search ranking and SEO growth dashboard visual",
+  },
+  {
+    title: "Performance Marketing",
+    slug: "performance-marketing",
+    path: "/performance-marketing",
+    icon: Target,
+    description: "Paid growth with measurable intent.",
+    benefits: ["Ad dashboards", "Funnels", "ROAS tracking"],
+    image: "/assets/direct/analytics-dashboard-closeup.png",
+    imageAlt: "Paid ads performance and conversion analytics visual",
+  },
+  {
+    title: "Social Media",
+    slug: "social-media-marketing",
+    path: "/social-media-marketing",
+    icon: Megaphone,
+    description: "Content systems for trust and reach.",
+    benefits: ["Content calendar", "Reels creative", "Engagement data"],
+    image: "/assets/direct/social-content-planner.png",
+    imageAlt: "Social media calendar and engagement analytics visual",
   },
 ];
 
@@ -415,64 +473,135 @@ export const serviceDetails = {
       { question: "Can you help define the app scope?", answer: "Yes. We help shape the first version around the highest-value workflows so the product launches with focus." },
     ],
   },
+  "booking-systems": {
+    title: "Booking Systems",
+    eyebrow: "Intelligent scheduling",
+    overview:
+      "Automated appointment scheduling and customer flows.",
+    description:
+      "Seamless booking setups designed to handle payments, calendars, reminders, and database integration.",
+    hero:
+      "Customer-facing schedulers, CRM updates, automated loops.",
+    image: "/assets/direct/contact-crm-direct.png",
+    imageAlt: "Interactive booking system and CRM visual",
+    benefits: [
+      "Frictionless customer booking pathways",
+      "Real-time calendar synchronization",
+      "Automated follow-up emails and SMS reminders",
+      "Secure pre-payment collection endpoints",
+    ],
+    sections: [
+      { title: "Calendars", points: ["Google Calendar", "Outlook Calendar", "Team schedules"] },
+      { title: "Notifications", points: ["SMS reminders", "Email flows", "Intake forms"] },
+      { title: "Integrations", points: ["Stripe payments", "CRM updating", "Custom webhooks"] },
+    ],
+    process: ["Requirements Map", "Portal Setup", "Form Creation", "CRM Syncing", "Reminders Test", "Launch"],
+    faqs: [
+      { question: "Can you connect bookings to our CRM?", answer: "Yes. Every scheduled meeting can update customer records inside HubSpot, Salesforce, or custom DBs." },
+      { question: "Do booking systems prevent double-booking?", answer: "Yes. Systems read real-time availability across team accounts to ensure only free slots are open." },
+      { question: "Can we require payment to book?", answer: "Yes. Schedulers can integrate Stripe or PayPal to collect deposits or full fees at the moment of booking." },
+    ],
+  },
 };
 
 export const industries = [
   {
     title: "Healthcare",
     icon: HeartPulse,
-    description: "Patient-first digital journeys.",
-    image: "/assets/direct/website-growth-laptop.png",
+    description: "Patient-first digital journeys and clinic visibility.",
+    image: "/assets/direct/industry-healthcare.png",
     alt: "Healthcare digital growth visual"
   },
   {
-    title: "Real Estate",
-    icon: Building2,
-    description: "Lead systems built for property growth.",
-    image: "/assets/direct/analytics-dashboard-closeup.png",
-    alt: "Real Estate digital growth visual"
+    title: "Technology",
+    icon: Cpu,
+    description: "SaaS websites, campaigns, and AI tools built to scale.",
+    image: "/assets/direct/portfolio-automation.png",
+    alt: "Technology growth visual"
   },
   {
-    title: "Education",
-    icon: GraduationCap,
-    description: "Enrollment-focused digital systems.",
-    image: "/assets/direct/social-content-planner.png",
-    alt: "Education digital growth visual"
+    title: "Construction",
+    icon: Building2,
+    description: "Project pipelines, lead gen, and local reputation.",
+    image: "/assets/direct/portfolio-real-estate.png",
+    alt: "Construction growth visual"
+  },
+  {
+    title: "Hospitality",
+    icon: Store,
+    description: "Booking platforms and customer experience funnels.",
+    image: "/assets/direct/about-team.jpg",
+    alt: "Hospitality growth visual"
+  },
+  {
+    title: "Retail",
+    icon: ShoppingBag,
+    description: "Multi-channel retail systems and buyer loops.",
+    image: "/assets/direct/hero-ecommerce-dashboard.png",
+    alt: "Retail growth visual"
+  },
+  {
+    title: "Corporate",
+    icon: BriefcaseBusiness,
+    description: "Enterprise sites, SEO clusters, and brand identity.",
+    image: "/assets/direct/growth-systems-meeting.jpg",
+    alt: "Corporate growth visual"
   },
   {
     title: "Manufacturing",
     icon: Cpu,
-    description: "B2B visibility and inquiry engines.",
-    image: "/assets/direct/analytics-dashboard-closeup.png",
+    description: "B2B visibility and international inquiry engines.",
+    image: "/assets/direct/industry-manufacturing.png",
     alt: "Manufacturing digital growth visual"
   },
   {
-    title: "Restaurants & Cafes",
+    title: "Restaurants",
     icon: Store,
-    description: "Local growth and customer engagement.",
-    image: "/assets/direct/hero-ecommerce-dashboard.png",
-    alt: "Restaurants & Cafes digital growth visual"
+    description: "Local growth, menu systems, and customer engagement.",
+    image: "/assets/direct/industry-restaurants.png",
+    alt: "Restaurants digital growth visual"
   },
   {
-    title: "Beauty & Wellness",
+    title: "Beauty",
     icon: Sparkles,
-    description: "Premium brand and booking journeys.",
-    image: "/assets/direct/branding-board-direct.png",
-    alt: "Beauty & Wellness digital growth visual"
+    description: "Premium cosmetic brand and booking journeys.",
+    image: "/assets/direct/industry-wellness.png",
+    alt: "Beauty digital growth visual"
   },
   {
-    title: "Ecommerce",
-    icon: ShoppingBag,
-    description: "Revenue-first online stores.",
-    image: "/assets/direct/hero-ecommerce-dashboard.png",
-    alt: "Ecommerce digital growth visual"
+    title: "Education",
+    icon: GraduationCap,
+    description: "Enrollment-focused systems and course pathways.",
+    image: "/assets/direct/industry-education.png",
+    alt: "Education digital growth visual"
   },
   {
     title: "Professional Services",
     icon: BriefcaseBusiness,
-    description: "Authority-led growth systems.",
-    image: "/assets/direct/ai-crm-workspace.png",
+    description: "Authority-led growth and lead qualification.",
+    image: "/assets/direct/industry-services.png",
     alt: "Professional Services digital growth visual"
+  },
+  {
+    title: "Law Firms",
+    icon: BriefcaseBusiness,
+    description: "Secure lead intake and visibility campaigns.",
+    image: "/assets/direct/contact-crm-direct.png",
+    alt: "Law firm growth visual"
+  },
+  {
+    title: "Real Estate",
+    icon: Building2,
+    description: "Lead systems built for property sales and agency growth.",
+    image: "/assets/direct/industry-real-estate.png",
+    alt: "Real Estate digital growth visual"
+  },
+  {
+    title: "E-commerce",
+    icon: ShoppingBag,
+    description: "Revenue-first storefronts and checkout flows.",
+    image: "/assets/direct/industry-ecommerce.png",
+    alt: "Ecommerce digital growth visual"
   }
 ];
 
@@ -528,7 +657,7 @@ export const portfolioItems = [
     category: "Websites",
     client_name: "MedNova",
     description: "Healthcare website, appointment capture, and local SEO.",
-    image: "/assets/direct/website-growth-laptop.png",
+    image: "/assets/direct/portfolio-healthcare.png",
     imageAlt: "Healthcare website dashboard visual",
     visualLabel: "Healthcare growth dashboard",
     project_url: "#",
@@ -539,7 +668,7 @@ export const portfolioItems = [
     category: "Marketing",
     client_name: "UrbanNest",
     description: "Landing pages, paid campaigns, and inquiry routing.",
-    image: "/assets/direct/analytics-dashboard-closeup.png",
+    image: "/assets/direct/portfolio-real-estate.png",
     imageAlt: "Real estate campaign analytics visual",
     visualLabel: "Real estate campaign system",
     project_url: "#",
@@ -550,7 +679,7 @@ export const portfolioItems = [
     category: "Branding",
     client_name: "LumaSkin",
     description: "Premium identity, packaging direction, and launch creative.",
-    image: "/assets/direct/branding-board-direct.png",
+    image: "/assets/direct/portfolio-branding.png",
     imageAlt: "Beauty brand identity board visual",
     visualLabel: "Beauty brand identity",
     project_url: "#",
@@ -572,7 +701,7 @@ export const portfolioItems = [
     category: "AI Automation",
     client_name: "Service Business",
     description: "AI-assisted WhatsApp qualification and follow-up.",
-    image: "/assets/direct/ai-crm-workspace.png",
+    image: "/assets/direct/portfolio-automation.png",
     imageAlt: "AI automation workflow visual",
     visualLabel: "Automation workflow",
     project_url: "#",
@@ -601,7 +730,7 @@ export const caseStudies = [
     execution: "Created structured service pages, improved speed, added appointment CTAs, and mapped local keywords.",
     results: "A stronger consultation journey, better local discovery, and clearer attribution for inquiries.",
     testimonial: "The website finally explains our services with confidence and makes it easy for patients to contact us.",
-    image: "/assets/direct/case-results-direct.png",
+    image: "/assets/direct/case-healthcare.jpg",
     imageAlt: "Healthcare case study growth dashboard visual",
   },
   {
@@ -614,7 +743,7 @@ export const caseStudies = [
     execution: "Built landing pages, tracking, retargeting segments, and automated lead routing for the sales team.",
     results: "More structured lead flow, faster follow-up, and clearer visibility into campaign performance.",
     testimonial: "The campaign system helped our sales team focus on better inquiries instead of chasing everything.",
-    image: "/assets/direct/analytics-dashboard-closeup.png",
+    image: "/assets/direct/case-real-estate.jpg",
     imageAlt: "Real estate lead generation dashboard visual",
   },
   {
@@ -627,7 +756,7 @@ export const caseStudies = [
     execution: "Mapped inquiry stages, configured automated responses, and added internal notifications.",
     results: "Reduced response delays and created a more consistent customer experience.",
     testimonial: "The automation feels like an extra coordinator working quietly in the background.",
-    image: "/assets/direct/ai-crm-workspace.png",
+    image: "/assets/direct/case-automation.jpg",
     imageAlt: "AI follow-up automation workflow visual",
   },
 ];
@@ -642,7 +771,7 @@ export const blogPosts = [
     content:
       "AI automation is most valuable when it removes friction from the customer journey. For lead response, that means capturing context, qualifying intent, sending relevant follow-ups, and notifying the right person without waiting for manual handoffs.",
     created_at: "2026-01-10",
-    image: "/assets/direct/ai-crm-workspace.png",
+    image: "/assets/direct/blog-automation.jpg",
     imageAlt: "AI automation lead response interface visual",
   },
   {
@@ -654,7 +783,7 @@ export const blogPosts = [
     content:
       "A high-performing service website clarifies who the business helps, what outcomes it creates, and why buyers should trust the company. Strong page structure, fast performance, visible proof, and focused forms all support conversion.",
     created_at: "2026-01-18",
-    image: "/assets/direct/website-growth-laptop.png",
+    image: "/assets/direct/blog-web-development.jpg",
     imageAlt: "Website conversion dashboard visual",
   },
   {
@@ -666,7 +795,7 @@ export const blogPosts = [
     content:
       "When businesses enter new markets, SEO must reflect local language, service demand, search behavior, and proof. The strongest strategy combines technical foundations with market-specific landing pages and content clusters.",
     created_at: "2026-02-04",
-    image: "/assets/direct/analytics-dashboard-closeup.png",
+    image: "/assets/direct/blog-seo.jpg",
     imageAlt: "SEO market expansion analytics visual",
   },
 ];
@@ -720,9 +849,9 @@ export const auditPages = [
 ];
 
 export const contactDetails = {
-  email: "hello@selmoredigital.com",
-  phone: "+92 300 0000000",
-  whatsapp: "+92 300 0000000",
+  email: "info@selmoredigital.com",
+  phone: "+92 3000669541",
+  whatsapp: "+92 3000669541",
   location: "Serving United States, Canada, and Pakistan.",
 };
 

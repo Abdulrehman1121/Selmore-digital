@@ -21,13 +21,12 @@ export default function BlogDetail() {
         schema={blogPostingSchema(post)}
       />
       <section className="bg-navy px-4 pb-20 pt-32 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">{post.category}</p>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-tight tracking-normal md:text-7xl">{post.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">{post.excerpt}</p>
           </div>
-          <VisualImage src={image} alt={post.imageAlt || `${post.title} visual`} className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
       <article className="section-pad bg-white px-4 sm:px-6 lg:px-8">

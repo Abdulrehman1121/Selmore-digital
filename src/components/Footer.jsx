@@ -15,7 +15,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3">
               <BrandLogo />
             </Link>
-            <p className="mt-5 max-w-sm text-base leading-8 text-slate-300">Building websites, automation systems, marketing engines, and digital products for businesses ready to scale.</p>
+            <p className="mt-5 max-w-sm text-base leading-8 text-slate-300">Building Connected Digital Growth Systems For Businesses Worldwide.</p>
             <div className="mt-6 flex gap-3">
               {[
                 ["LinkedIn", Linkedin],

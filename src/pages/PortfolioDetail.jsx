@@ -22,13 +22,12 @@ export default function PortfolioDetail() {
         schema={organizationSchema}
       />
       <section className="bg-navy px-4 pb-20 pt-32 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">{item.category}</p>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-tight tracking-normal md:text-7xl">{item.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">{item.description}</p>
           </div>
-          <VisualImage src={image} alt={item.imageAlt || `${item.title} visual`} className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
       <section className="section-pad bg-light px-4 sm:px-6 lg:px-8">

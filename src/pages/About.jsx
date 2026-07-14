@@ -16,7 +16,7 @@ export default function About() {
         schema={organizationSchema}
       />
       <section className="bg-navy px-4 pb-20 pt-32 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">About</p>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-tight tracking-normal md:text-7xl">
@@ -26,7 +26,6 @@ export default function About() {
               We build brands, lead systems, and AI-powered operations.
             </p>
           </div>
-          <VisualImage src="/assets/direct/about-team.jpg" alt="Selmore Digital strategic growth showcase visual" className="aspect-[4/3] border border-white/10 shadow-glow" />
         </div>
       </section>
 
@@ -51,7 +50,7 @@ export default function About() {
       <section className="section-pad bg-white px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Values" title="How We Work" description="Premium thinking, clear execution." align="center" />
-          <div className="mt-12 grid gap-5 md:grid-cols-5">
+          <div className="mt-12 grid gap-5 grid-cols-1 md:grid-cols-3">
             {values.map((value, index) => (
               <FadeIn key={value.title} delay={index * 0.05} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
                 <h3 className="font-display text-xl font-extrabold tracking-normal text-navy">{value.title}</h3>

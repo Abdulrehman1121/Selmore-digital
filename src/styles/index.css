@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Inconsolata:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,12 +15,20 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -57,9 +65,129 @@ select {
   color: #ffffff;
 }
 
+/* Hide any dropdown arrows or indicators in navbar */
+header button svg,
+nav button svg,
+.navbar button svg,
+header details summary::-webkit-details-marker,
+nav details summary::-webkit-details-marker,
+.navbar details summary::-webkit-details-marker {
+  display: none !important;
+}
+
+header button::after,
+nav button::after,
+.navbar button::after,
+header summary::marker,
+nav summary::marker,
+.navbar summary::marker {
+  display: none !important;
+  content: none !important;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none !important;
+}
+
+summary::marker {
+  display: none !important;
+  content: "" !important;
+}
+
 .text-balance {
   text-wrap: balance;
 }
+
+.hero-typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: -0.025em;
+  max-width: 100%;
+  animation: typing 3.6s steps(19) forwards;
+}
+
+.hero-typing::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 0.25ch;
+  color: #22d3ee;
+  opacity: 1;
+  animation: caret 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  to {
+    width: calc(var(--steps, 19) * 1ch);
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-typing {
+    white-space: normal;
+    width: auto;
+    animation: none;
+  }
+
+  .hero-typing::after {
+    display: none;
+  }
+}
+
+.hero-typing-smooth {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: uppercase;
+  width: 0;
+  max-width: 100%;
+}
+
+.loaded .hero-typing-smooth {
+  animation: typing-smooth 3.6s steps(var(--steps, 18)) forwards;
+}
+
+.hero-typing-smooth::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 0.1ch;
+  color: #22d3ee;
+  opacity: 0;
+}
+
+.loaded .hero-typing-smooth::after {
+  opacity: 1;
+  animation: caret 0.8s step-end infinite;
+}
+
+@keyframes typing-smooth {
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-typing-smooth {
+    white-space: normal;
+    width: auto;
+    animation: none;
+  }
+
+  .hero-typing-smooth::after {
+    display: none;
+  }
+}
+
 
 .line-clamp-2 {
   display: -webkit-box;
@@ -177,6 +305,329 @@ select {
   }
 }
 
+.service-orbit-wrapper {
+  position: relative;
+  width: min(1080px, 100%);
+  aspect-ratio: 1 / 1;
+  min-height: 860px;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+}
+
+@media (min-width: 1024px) {
+  .service-orbit-wrapper {
+    transform: translate(-45%, -2%);
+  }
+}
+
+.service-orbit-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.service-orbit-glow {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(34, 211, 238, 0.15), transparent 44%);
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+.service-orbit-core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 112px;
+  height: 112px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.28), rgba(8, 30, 58, 0.92));
+  box-shadow: 0 0 42px rgba(34, 211, 238, 0.28), inset 0 0 20px rgba(34, 211, 238, 0.22);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  animation: orbitCorePulse 4.8s ease-in-out infinite;
+}
+
+.service-orbit-core-ring {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  border-radius: 999px;
+  filter: blur(0.75px);
+}
+
+.service-orbit-core-logo {
+  width: 5.2rem;
+  height: 5.2rem;
+  object-fit: contain;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 28px rgba(34, 211, 238, 0.18);
+}
+
+/* Static decorative rings — purely visual reference lines behind the
+   planets. These never animate and never position anything. */
+.orbit-guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 999px;
+  border: 1px dotted rgba(34, 211, 238, 0.22);
+  pointer-events: none;
+}
+
+.orbit-guide-1 {
+  width: 32%;
+  height: 32%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-guide-2 {
+  width: 60%;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(0, 208, 132, 0.18);
+}
+
+.orbit-guide-3 {
+  width: 88%;
+  height: 88%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(34, 211, 238, 0.16);
+}
+
+.orbit-guide-4 {
+  width: 152%;
+  height: 152%;
+  transform: translate(-50%, -50%);
+  border-color: rgba(0, 208, 132, 0.13);
+}
+
+/* Planets are positioned every frame from JS via inline style.transform
+   (translate + scale), so this class only owns layout/anchor + visual
+   styling, never the orbit math itself. */
+.service-planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  will-change: transform, opacity;
+}
+
+.service-planet-card {
+  min-width: 3.5rem;
+  max-width: 3.8rem;
+  min-height: 3.5rem;
+  max-height: 3.8rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 18, 34, 0.78);
+  border: 1px solid rgba(34, 211, 238, 0.14);
+  box-shadow: 0 14px 40px rgba(4, 8, 19, 0.28);
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  color: #e2e8f0;
+  opacity: 0.96;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.service-planet-icon {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(18, 35, 60, 0.94);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  color: #22d3ee;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.14);
+}
+
+.service-planet-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1rem;
+}
+
+.service-planet-tooltip {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 14rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.95rem;
+  background: rgba(8, 17, 33, 0.9);
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* Hover only ever transforms the CHILD .service-planet-card, never
+   .service-planet itself — that outer element's transform is owned by JS
+   every animation frame, so a CSS rule targeting it directly would just
+   get overwritten on the next frame and never actually show. */
+.service-planet:hover .service-planet-card,
+.service-planet:focus-within .service-planet-card {
+  transform: translateY(-3px) scale(1.04);
+  border-color: rgba(34, 211, 238, 0.35);
+  opacity: 1 !important;
+}
+
+.service-planet:hover .service-planet-tooltip,
+.service-planet:focus-within .service-planet-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.service-orbit-mobile-grid {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .service-orbit-wrapper {
+    min-height: 460px;
+  }
+  .service-planet-card {
+    min-width: 3.8rem;
+    max-width: 4rem;
+    min-height: 3.8rem;
+    max-height: 4rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-orbit-wrapper {
+    width: 100%;
+    min-height: auto;
+    aspect-ratio: auto;
+    padding: 0.5rem 0.5rem 0.25rem;
+  }
+  .service-orbit-scene {
+    display: none;
+  }
+  .service-orbit-mobile-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .service-orbit-mobile-card {
+    display: grid;
+    place-items: center;
+    gap: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .service-orbit-mobile-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(10, 18, 34, 0.78);
+    color: #22d3ee;
+    border: 1px solid rgba(34, 211, 238, 0.14);
+    box-shadow: 0 14px 40px rgba(4, 8, 19, 0.28);
+    backdrop-filter: blur(16px);
+  }
+  .service-orbit-mobile-label {
+    display: none;
+  }
+  .service-orbit-mobile-desc {
+    display: none;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    line-height: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The orbit's continuous rotation is entirely JS-driven (see
+     ServiceOrbitHero.jsx), and that JS checks matchMedia itself and skips
+     starting the requestAnimationFrame loop when reduced motion is on —
+     planets render once in a static layout instead. Here we only need to
+     stop the core's own CSS pulse animation. */
+  .service-orbit-core {
+    animation: none;
+  }
+}
+
+@keyframes orbitCorePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 42px rgba(34, 211, 238, 0.28), inset 0 0 20px rgba(34, 211, 238, 0.22);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 58px rgba(34, 211, 238, 0.36), inset 0 0 28px rgba(34, 211, 238, 0.3);
+  }
+}
+
+.hero-color-ring {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.55;
+  animation: pulseGlow 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-color-ring-1 {
+  top: -4rem;
+  right: -4rem;
+  width: 14rem;
+  height: 14rem;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.45), transparent 60%);
+}
+
+.hero-color-ring-2 {
+  bottom: -3.5rem;
+  left: -3rem;
+  width: 12rem;
+  height: 12rem;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.26), transparent 60%);
+  animation-delay: 1.2s;
+}
+
+.hero-color-ring-3 {
+  bottom: 4rem;
+  right: 2rem;
+  width: 8rem;
+  height: 8rem;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.32), transparent 60%);
+  animation-delay: 2.4s;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
+}
+
 /* ---------- Preloader Styling ---------- */
 @keyframes spin-slow {
   0% {
@@ -199,5 +650,3 @@ select {
     radial-gradient(circle 350px at 50% 50%, rgba(34, 211, 238, 0.12), transparent 70%),
     #0b1220;
 }
-
-
