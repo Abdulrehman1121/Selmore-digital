@@ -280,7 +280,7 @@ export default function ServiceOrbitHero() {
           <div className="service-orbit-core-ring" />
           <img
             className="service-orbit-core-logo"
-            src="/assets/selmore-digital-logo.png"
+            src="/assets/selmore-orbit-logo.png"
             alt="Selmore Digital logo"
           />
         </div>
