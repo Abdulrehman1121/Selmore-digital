@@ -18,6 +18,23 @@ export default function IndustriesSection() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
+      // 1. Heading Fade-In Animation (Runs for both Desktop and Mobile once when entering viewport)
+      gsap.fromTo(
+        containerRef.current.querySelectorAll(".industries-eyebrow, .industries-title, .industries-subtitle"),
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 90%", // Trigger early so it's ready when pinning begins
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
       const isDesktop = window.innerWidth >= 1024;
 
       if (isDesktop) {
@@ -52,26 +69,7 @@ export default function IndustriesSection() {
           },
         });
 
-        // 1. Heading Intro Animation
-        tl.fromTo(
-          ".industries-eyebrow",
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.5 }
-        )
-        .fromTo(
-          ".industries-title",
-          { opacity: 0, y: 25, scale: 0.96 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.5 },
-          "-=0.3"
-        )
-        .fromTo(
-          ".industries-subtitle",
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.4 },
-          "-=0.2"
-        );
-
-        // 2. Stacked cards transition loop
+        // Stacked cards transition loop
         cards.forEach((card, idx) => {
           if (idx === cards.length - 1) return;
 
@@ -104,22 +102,6 @@ export default function IndustriesSection() {
       } else {
         // Mobile / Tablet: Simplified Fade Up Scroll Trigger
         const cards = gsap.utils.toArray(".mobile-industry-card");
-        
-        // Header Anim
-        gsap.fromTo(
-          containerRef.current.querySelectorAll(".industries-eyebrow, .industries-title, .industries-subtitle"),
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            duration: 0.6,
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 80%",
-            },
-          }
-        );
 
         // Cards Anim
         cards.forEach((card) => {
@@ -147,12 +129,12 @@ export default function IndustriesSection() {
   return (
     <section
       ref={containerRef}
-      className="industries-section bg-light px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center py-16"
+      className="industries-section bg-light px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center py-10 md:py-16"
     >
-      <div className="mx-auto max-w-7xl w-full">
+      <div className="mx-auto max-w-7xl w-full bg-white rounded-[2.5rem] border border-slate-200/80 shadow-soft p-8 md:p-12 lg:p-16">
         
         {/* Desktop Layout: Split Pinned Stack */}
-        <div className="hidden lg:grid grid-cols-[0.45fr_0.55fr] gap-16 items-center min-h-[650px]">
+        <div className="hidden lg:grid grid-cols-[0.45fr_0.55fr] gap-16 items-center min-h-[500px]">
           
           {/* Left Column: Fixed Header copy & active counter */}
           <div ref={leftColRef} className="flex flex-col items-start text-left h-full justify-center">
@@ -232,13 +214,13 @@ export default function IndustriesSection() {
         {/* Mobile / Tablet Layout: Non-pinned Single Column Grid */}
         <div className="block lg:hidden text-center">
           <div className="mb-12 max-w-3xl mx-auto flex flex-col items-center">
-            <p className="industries-eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-blue mb-4">
+            <p className="industries-eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-blue mb-4 opacity-0">
               Industries
             </p>
-            <h2 className="industries-title font-display text-3xl font-extrabold leading-tight tracking-normal text-navy">
+            <h2 className="industries-title font-display text-3xl font-extrabold leading-tight tracking-normal text-navy opacity-0">
               Experience Across Multiple Industries.
             </h2>
-            <p className="industries-subtitle mt-4 text-sm leading-relaxed text-slate-500 max-w-xl">
+            <p className="industries-subtitle mt-4 text-sm leading-relaxed text-slate-500 max-w-xl opacity-0">
               Custom growth systems for trust, visibility, and leads.
             </p>
           </div>

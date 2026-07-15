@@ -136,7 +136,11 @@ export default function Home() {
           <div className="flex flex-col items-start text-left">
             <SectionHeading
               eyebrow="AI Automation"
-              title="Artificial Intelligence That Solves Real Business Problems."
+              title={
+                <>
+                  <span className="text-cyan">Artificial Intelligence</span> That Solves Real Business Problems.
+                </>
+              }
               dark
             />
 

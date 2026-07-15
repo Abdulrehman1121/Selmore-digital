@@ -124,6 +124,8 @@ const SERVICES = [
   },
 ];
 
+const ACTIVE_SERVICES = SERVICES.filter((s) => s.ring !== 4);
+
 // Radii are expressed as a fraction of the scene's half-width, so the whole
 // orbit scales fluidly with .service-orbit-wrapper instead of assuming a
 // fixed pixel design box. The orbits are perfect circles using the same radius
@@ -132,13 +134,12 @@ const RING_CONFIG = {
   1: { radiusFrac: 0.16, durationSec: 24, direction: 1 },
   2: { radiusFrac: 0.30, durationSec: 34, direction: -1 },
   3: { radiusFrac: 0.44, durationSec: 44, direction: 1 },
-  4: { radiusFrac: 0.72, durationSec: 56, direction: -1 },
 };
 
 function buildPlanets() {
   const byRing = {};
 
-  SERVICES.forEach((service) => {
+  ACTIVE_SERVICES.forEach((service) => {
     if (!byRing[service.ring]) {
       byRing[service.ring] = [];
     }
@@ -146,7 +147,7 @@ function buildPlanets() {
     byRing[service.ring].push(service);
   });
 
-  return SERVICES.map((service) => {
+  return ACTIVE_SERVICES.map((service) => {
     const ringItems = byRing[service.ring];
     const index = ringItems.findIndex((item) => item.id === service.id);
     const baseAngle = (360 / ringItems.length) * index;
@@ -195,27 +196,27 @@ export default function ServiceOrbitHero() {
     reducedMotionRef.current = mql.matches;
 
     const positionPlanet = (p, angleDeg, floatOffset = 0) => {
-  const cfg = RING_CONFIG[p.ring];
-  const half = halfWidthRef.current;
-  const rad = (angleDeg * Math.PI) / 180;
+      const cfg = RING_CONFIG[p.ring];
+      const half = halfWidthRef.current;
+      const rad = (angleDeg * Math.PI) / 180;
 
-  // Perfect circle orbit
-  const radius = cfg.radiusFrac * half;
+      // Perfect circle orbit - matches the guide ring diameter (CSS width of scene is 2 * half)
+      const radius = cfg.radiusFrac * half * 2;
 
-  const x = Math.cos(rad) * radius;
-  const y = Math.sin(rad) * radius + floatOffset;
+      const x = Math.cos(rad) * radius;
+      const y = Math.sin(rad) * radius;
 
-  // Keep all services visible properly
-  const scale = 1;
-  const opacity = 1;
+      // Keep all services visible properly
+      const scale = 1;
+      const opacity = 1;
 
-  const el = nodeRefs.current[p.id];
-  if (!el) return;
+      const el = nodeRefs.current[p.id];
+      if (!el) return;
 
-  el.style.transform = `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
-  el.style.opacity = String(opacity);
-  el.style.zIndex = String(20 + p.ring);
-};
+      el.style.transform = `translate3d(-50%, -50%, 0) translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+      el.style.opacity = String(opacity);
+      el.style.zIndex = String(20 + p.ring);
+    };
 
     if (reducedMotionRef.current) {
       planets.forEach((p) => positionPlanet(p, p.baseAngle, 0));
@@ -238,8 +239,7 @@ export default function ServiceOrbitHero() {
 
       planets.forEach((p) => {
         const angle = p.baseAngle + ringAngleRef.current[p.ring];
-        const float = Math.sin(ts * 0.0012 + p.floatPhase) * 4;
-        positionPlanet(p, angle, float);
+        positionPlanet(p, angle, 0);
       });
 
       rafRef.current = requestAnimationFrame(tick);
@@ -275,7 +275,6 @@ export default function ServiceOrbitHero() {
         <div className="orbit-guide orbit-guide-1" />
         <div className="orbit-guide orbit-guide-2" />
         <div className="orbit-guide orbit-guide-3" />
-        <div className="orbit-guide orbit-guide-4" />
 
         <div className="service-orbit-core">
           <div className="service-orbit-core-ring" />
@@ -311,7 +310,7 @@ export default function ServiceOrbitHero() {
 
       {/* Mobile fallback — no orbit math runs at all below 768px */}
       <div className="service-orbit-mobile-grid">
-        {SERVICES.map((service) => {
+        {ACTIVE_SERVICES.map((service) => {
           const Icon = service.icon;
           return (
             <div key={service.id} className="service-orbit-mobile-card">

@@ -104,26 +104,18 @@ summary::marker {
 
 .hero-typing {
   display: inline-block;
-  overflow: hidden;
   white-space: nowrap;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.005em;
   max-width: 100%;
-  animation: typing 3.6s steps(19) forwards;
 }
 
 .hero-typing::after {
   content: "|";
   display: inline-block;
-  margin-left: 0.25ch;
+  margin-left: -0.1ch;
   color: #22d3ee;
   opacity: 1;
   animation: caret 0.8s step-end infinite;
-}
-
-@keyframes typing {
-  to {
-    width: calc(var(--steps, 19) * 1ch);
-  }
 }
 
 @keyframes caret {
@@ -317,7 +309,7 @@ summary::marker {
 
 @media (min-width: 1024px) {
   .service-orbit-wrapper {
-    transform: translate(-45%, -2%);
+    transform: translate(-10%, -2%);
   }
 }
 
@@ -402,12 +394,6 @@ summary::marker {
   border-color: rgba(34, 211, 238, 0.16);
 }
 
-.orbit-guide-4 {
-  width: 152%;
-  height: 152%;
-  transform: translate(-50%, -50%);
-  border-color: rgba(0, 208, 132, 0.13);
-}
 
 /* Planets are positioned every frame from JS via inline style.transform
    (translate + scale), so this class only owns layout/anchor + visual

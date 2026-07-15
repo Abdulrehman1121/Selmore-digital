@@ -234,16 +234,12 @@ export default function HeroSection() {
             <p
               ref={eyebrowRef}
               className="mb-5 text-xs font-bold uppercase tracking-[0.35em] text-cyan sm:text-sm"
-            >
-            DIGITAL GROWTH • AI • TECHNOLOGY
-          </p>
+            >DIGITAL GROWTH • AI • TECHNOLOGY</p>
 
           <h1
             ref={titleRef}
-            className="hero-typing mb-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl min-h-[1.2em]"
-          >
-            Build What's Next.
-          </h1>
+            className="hero-typing mb-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl lg:whitespace-nowrap min-h-[1.2em]"
+          >Build What's Next.</h1>
 
           <div ref={paragraphsRef} className="space-y-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
             <p className="font-bold text-white text-lg">Business has changed.</p>
@@ -276,7 +272,7 @@ export default function HeroSection() {
           </div>
 
           {/* Small Trust Line */}
-          <div ref={trustRef} className="mt-8 border-t border-white/10 pt-6 w-full">
+          <div ref={trustRef} className="mt-8 pt-4 w-full">
             <p className="text-xs sm:text-sm text-slate-400 font-medium tracking-wide">
               Helping businesses grow through strategy, technology, AI, and measurable digital experiences.
             </p>
