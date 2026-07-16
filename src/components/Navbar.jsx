@@ -29,7 +29,7 @@ export default function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between overflow-visible px-4 py-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <Link to="/" onClick={handleHomeClick} className="flex items-center gap-3">
+        <Link to="/" onClick={handleHomeClick} className="nav-logo flex items-center gap-3">
           <BrandLogo compact />
         </Link>
 

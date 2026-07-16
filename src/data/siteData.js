@@ -31,6 +31,7 @@ export const tagline = "Digital Growth • AI Automation • Technology";
 
 export const brandAssets = {
   logo: "/assets/selmore-digital-logo.png",
+  mark: "/assets/Selmore Final Logo.png",
   markAlt: "Selmore Digital official logo",
   heroVisual: "/assets/direct/growth-systems-meeting.jpg",
   contactVisual: "/assets/direct/contact-crm-direct.png",

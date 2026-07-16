@@ -349,18 +349,21 @@ summary::marker {
 
 .service-orbit-core-ring {
   position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(34, 211, 238, 0.28);
+  inset: 2px;
+  border: 1.5px solid rgba(34, 211, 238, 0.45);
   border-radius: 999px;
-  filter: blur(0.75px);
+  filter: blur(0.5px);
+  z-index: 1;
 }
 
 .service-orbit-core-logo {
-  width: 5.2rem;
-  height: 5.2rem;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 999px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 28px rgba(34, 211, 238, 0.18);
+  padding: 10px;
+  z-index: 2;
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.18);
 }
 
 /* Static decorative rings — purely visual reference lines behind the
