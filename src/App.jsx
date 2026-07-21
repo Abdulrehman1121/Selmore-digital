@@ -1,134 +1,101 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
-import Preloader from "./components/Preloader.jsx";
-import Footer from "./components/Footer.jsx";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+
 import Navbar from "./components/Navbar.jsx";
-import { auditPages } from "./data/siteData.js";
-import About from "./pages/About.jsx";
-import Blog from "./pages/Blog.jsx";
-import BlogDetail from "./pages/BlogDetail.jsx";
-import BookConsultation from "./pages/BookConsultation.jsx";
-import Contact from "./pages/Contact.jsx";
-import ConversionPage from "./pages/ConversionPage.jsx";
-import DigitalGrowthStrategy from "./pages/DigitalGrowthStrategy.jsx";
+import Footer from "./components/Footer.jsx";
+import Preloader from "./components/Preloader.jsx";
+
+// Eagerly loaded components for fast entry performance
 import Home from "./pages/Home.jsx";
-import Industries from "./pages/Industries.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import Portfolio from "./pages/Portfolio.jsx";
-import PortfolioDetail from "./pages/PortfolioDetail.jsx";
-import ServiceDetail from "./pages/ServiceDetail.jsx";
 
-function GrowthSystemRoute() {
-  const { slug } = useParams();
-  const slugMap = {
-    "website-design-development": "website-development",
-    "ai-solutions-automation": "ai-automation",
-    "search-engine-optimization": "seo-services",
-    "performance-marketing": "performance-marketing",
-    "social-media-marketing": "social-media-marketing",
-    "brand-identity-digital-experience": "branding-design",
-    "selmore-creative": "branding-design",
-    "online-booking-systems": "booking-systems",
-    "digital-growth-strategy": "website-development",
-  };
+// Lazy-loaded sub-pages with lightweight transition fallback
+const About = lazy(() => import("./pages/About.jsx"));
+const GrowthSystems = lazy(() => import("./pages/GrowthSystems.jsx"));
+const GrowthSystemDetail = lazy(() => import("./pages/GrowthSystemDetail.jsx"));
+const Work = lazy(() => import("./pages/Work.jsx"));
+const WorkDetail = lazy(() => import("./pages/WorkDetail.jsx"));
+const Creative = lazy(() => import("./pages/Creative.jsx"));
+const CreativeDetail = lazy(() => import("./pages/CreativeDetail.jsx"));
+const GrowthJournal = lazy(() => import("./pages/GrowthJournal.jsx"));
+const JournalDetail = lazy(() => import("./pages/JournalDetail.jsx"));
+const GrowthLibrary = lazy(() => import("./pages/GrowthLibrary.jsx"));
+const LibraryDetail = lazy(() => import("./pages/LibraryDetail.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
+const BookGrowthSession = lazy(() => import("./pages/BookGrowthSession.jsx"));
 
-  const targetSlug = slugMap[slug] ?? "website-development";
-  return <ServiceDetail slug={targetSlug} />;
-}
-
+// Scroll Restoration Handler
 function ScrollToTop() {
   const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return null;
 }
 
-function PageFrame({ children }) {
+// Lightweight transition loading skeleton
+function PageFallback() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.22 }}
-    >
-      {children}
-    </motion.div>
+    <div className="min-h-[70vh] bg-navy pt-32 px-4 flex items-center justify-center">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-cyan border-t-transparent" />
+    </div>
   );
 }
 
 export default function App() {
-  const location = useLocation();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (loading) {
-      document.body.classList.add("loading");
-      document.body.classList.remove("loaded");
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.classList.remove("loading");
-      document.body.classList.add("loaded");
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [loading]);
+  if (loading) {
+    return <Preloader onComplete={() => setLoading(false)} />;
+  }
 
   return (
     <>
-      <AnimatePresence>
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
       <ScrollToTop />
-      <Navbar />
-      <AnimatePresence mode="wait">
-        <PageFrame key={location.pathname}>
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            
-            <Route path="/growth-systems" element={<DigitalGrowthStrategy />} />
-            <Route path="/growth-systems/:slug" element={<GrowthSystemRoute />} />
-            <Route path="/digital-growth-strategy" element={<DigitalGrowthStrategy />} />
-            <Route path="/website-design-development" element={<ServiceDetail slug="website-development" />} />
-            <Route path="/ai-solutions-automation" element={<ServiceDetail slug="ai-automation" />} />
-            <Route path="/search-engine-optimization" element={<ServiceDetail slug="seo-services" />} />
-            <Route path="/performance-marketing" element={<ServiceDetail slug="performance-marketing" />} />
-            <Route path="/social-media-marketing" element={<ServiceDetail slug="social-media-marketing" />} />
-            <Route path="/brand-identity-digital-experience" element={<ServiceDetail slug="branding-design" />} />
-            <Route path="/selmore-creative" element={<ServiceDetail slug="branding-design" />} />
-            <Route path="/online-booking-systems" element={<ServiceDetail slug="booking-systems" />} />
+      <div className="flex min-h-screen flex-col bg-navy text-slate-100 font-sans antialiased selection:bg-cyan selection:text-navy">
+        <Navbar />
 
-            <Route path="/selected-work" element={<Portfolio />} />
-            <Route path="/selected-work/growth-stories" element={<Portfolio />} />
-            <Route path="/selected-work/projects" element={<Portfolio />} />
-            <Route path="/selected-work/case-studies" element={<Portfolio />} />
-            <Route path="/growth-story/:slug" element={<PortfolioDetail />} />
-            
-            <Route path="/industries" element={<Industries />} />
-            <Route path="/industries/:slug" element={<Industries />} />
-            
-            <Route path="/knowledge" element={<Blog />} />
-            <Route path="/knowledge/insights" element={<Blog />} />
-            <Route path="/knowledge/resources" element={<Blog />} />
-            <Route path="/knowledge/growth-journal" element={<Blog />} />
-            <Route path="/insights" element={<Blog />} />
-            <Route path="/insights/:slug" element={<BlogDetail />} />
-            
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/book-growth-session" element={<BookConsultation />} />
-            <Route path="/book-consultation" element={<BookConsultation />} />
-            {auditPages.map((page) => (
-              <Route key={page.path} path={page.path} element={<ConversionPage page={page} />} />
-            ))}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </PageFrame>
-      </AnimatePresence>
+        <main className="flex-grow">
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
+              {/* Home & About */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+
+              {/* Growth Systems (9 routes) */}
+              <Route path="/growth-systems" element={<GrowthSystems />} />
+              <Route path="/growth-systems/:slug" element={<GrowthSystemDetail />} />
+
+              {/* Work (17 routes) */}
+              <Route path="/work" element={<Work />} />
+              <Route path="/work/:slug" element={<WorkDetail />} />
+
+              {/* Creative (10 routes) */}
+              <Route path="/creative" element={<Creative />} />
+              <Route path="/creative/:slug" element={<CreativeDetail />} />
+
+              {/* Growth Journal (5 routes) */}
+              <Route path="/growth-journal" element={<GrowthJournal />} />
+              <Route path="/growth-journal/:slug" element={<JournalDetail />} />
+
+              {/* Growth Library (5 routes) */}
+              <Route path="/growth-library" element={<GrowthLibrary />} />
+              <Route path="/growth-library/:slug" element={<LibraryDetail />} />
+
+              {/* Contact & Booking */}
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/book-growth-session" element={<BookGrowthSession />} />
+
+              {/* 404 Catch-All */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </main>
+
+        <Footer />
+      </div>
     </>
   );
 }

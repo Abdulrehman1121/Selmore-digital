@@ -101,7 +101,7 @@ export default function Preloader({ onComplete }) {
 
           {/* Logo Mark */}
           <img
-            src="/assets/selmore-digital-logo.png"
+            src="/assets/Selmore bg icon.png"
             alt="Selmore Digital Loader"
             className="w-24 h-24 rounded-full object-cover z-10 shadow-[0_0_36px_rgba(34,211,238,0.3)] border border-white/10"
           />

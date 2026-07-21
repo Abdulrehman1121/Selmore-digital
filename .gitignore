@@ -1,6 +1,8 @@
-
-node_modules
-dist
+node_modules/
+dist/
 .env
-.DS_Store
+.env.local
+backend/.env
 *.log
+.DS_Store
+Thumbs.db

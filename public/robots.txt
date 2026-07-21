@@ -1,0 +1,8 @@
+# ==========================================
+# Selmore Digital - robots.txt
+# ==========================================
+
+User-agent: *
+Allow: /
+
+Sitemap: https://selmoredigital.com/sitemap.xml

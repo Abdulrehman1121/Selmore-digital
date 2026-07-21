@@ -1,316 +1,288 @@
-import { Mail, MessageCircle, Phone } from "lucide-react";
-import ContactForm from "../components/ContactForm.jsx";
+import { useState } from "react";
+import { Send, CheckCircle2, Phone, Mail, MapPin, AlertCircle, MessageSquare } from "lucide-react";
 import CTASection from "../components/CTASection.jsx";
-import FAQAccordion from "../components/FAQAccordion.jsx";
-import AnimatedGradientBackground from "../components/AnimatedGradientBackground.jsx";
 import SEO from "../components/SEO.jsx";
 import { contactDetails } from "../data/siteData.js";
-import { localBusinessSchema } from "../lib/schema.js";
-
-const timelineSteps = [
-  {
-    title: "Tell Us About Your Business",
-    copy: "Complete our short project form with goals, challenges, and timeline. No lengthy questionnaires — just enough to understand your project.",
-  },
-  {
-    title: "Discovery Call",
-    copy: "We schedule a Growth Session to explore your business. This isn’t a sales call. It’s a strategic conversation about opportunities and solutions.",
-  },
-  {
-    title: "Growth Roadmap",
-    copy: "If we’re the right fit, we prepare a tailored proposal: scope, timeline, investment, and next steps with no surprises.",
-  },
-  {
-    title: "Let’s Build Together",
-    copy: "Once approved, our team begins discovery, planning, and design to turn your vision into a connected digital growth system.",
-  },
-];
-
-const reasons = [
-  "Honest advice",
-  "Transparent communication",
-  "Clear timelines",
-  "Practical strategies",
-  "Long-term partnerships",
-  "Measurable business outcomes",
-];
-
-const faqs = [
-  {
-    question: "Do I need a clear project brief?",
-    answer: "Not at all. Many of our clients begin with an idea, a challenge, or simply a desire to grow. We'll help define the roadmap together.",
-  },
-  {
-    question: "Do you work internationally?",
-    answer: "Yes. We work with businesses across North America, Europe, Australia, the Middle East, and Pakistan. Most meetings are conducted remotely.",
-  },
-  {
-    question: "How quickly will you respond?",
-    answer: "We aim to respond to every enquiry within one business day. For urgent projects, please let us know in your message.",
-  },
-  {
-    question: "What happens during the Growth Session?",
-    answer: "We learn about your business, discuss your goals, answer questions, and recommend the most suitable Growth System. There’s no obligation to move forward.",
-  },
-  {
-    question: "Do you work with startups?",
-    answer: "Absolutely. Whether you're launching a startup or scaling an established organisation, our process adapts to your stage of growth.",
-  },
-];
-
-const regions = [
-  "United States",
-  "Canada",
-  "United Kingdom",
-  "Australia",
-  "Europe",
-  "Middle East",
-  "Pakistan",
-];
+import TypingHeading from "../components/TypingHeading.jsx";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    service_interest: "Website Development",
+    budget: "$5,000 - $10,000",
+    message: ""
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Selmore Digital",
+    "url": "https://selmoredigital.com/contact",
+    "description": "Get in touch with Selmore Digital for web development, AI automation, SEO, and digital growth strategy."
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg("");
+
+    try {
+      // Send POST to verified backend endpoint
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          source_page: "Contact Page"
+        })
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || "Unable to process message right now.");
+      }
+    } catch (err) {
+      setErrorMsg("Our online server is currently undergoing maintenance. Please reach out directly via WhatsApp or Email below.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <SEO
-        title="Contact Selmore Digital | Book Your Growth Session"
-        description="Ready to grow your business? Book a Growth Session with Selmore Digital and discover how strategy, technology, AI, and digital marketing can help you achieve measurable results."
+        title="Contact Us | Selmore Digital Growth Partner"
+        description="Reach out to Selmore Digital for website development, AI automation, SEO, branding, and digital growth systems."
         path="/contact"
-        schema={localBusinessSchema}
+        schema={contactSchema}
       />
 
-      <section className="relative overflow-hidden bg-navy text-white">
-        <AnimatedGradientBackground />
-        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan/80">START THE CONVERSATION</p>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl whitespace-nowrap">
-              Let's Build What's Next.
-            </h1>
-            <div className="mt-8 space-y-5 text-lg leading-8 text-slate-300 sm:text-xl">
-              <p>Every successful project begins with a conversation. Not a proposal. Not a contract. A conversation.</p>
-              <p>
-                Whether you're planning a new website, exploring AI, improving your search visibility, strengthening your brand, or scaling your business, we'd love to understand what you're building.
-              </p>
-              <p>Our goal isn't to sell you a service. It's to help you identify the right growth system for your business. Let's start there.</p>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#contact-form" className="inline-flex items-center justify-center rounded-full bg-blue px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-cyan">
-                Book Your Growth Session
-              </a>
-              <a href="#contact-form" className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-cyan hover:text-cyan">
-                Send Us Your Project
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-slate-950 px-4 text-white sm:px-6 lg:px-8">
+      {/* Hero */}
+      <section className="bg-navy px-4 pb-20 pt-32 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan/80">What Happens Next?</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                One of the biggest reasons people hesitate to contact agencies is uncertainty.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-              “What happens after I submit the form?” Let’s answer that.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {timelineSteps.map((step, index) => (
-              <div key={step.title} className="group rounded-3xl border border-white/10 bg-white/5 p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan/30 hover:bg-white/10">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan/10 text-xl font-semibold text-cyan">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-white">{step.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{step.copy}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan">CONTACT US</p>
+          <TypingHeading text="Let's Talk About Your Growth Goals." className="mt-5 font-display text-4xl font-black leading-tight tracking-tight md:text-6xl max-w-4xl" />
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Tell us about your project, timeline, and goals. We'll respond within 24 business hours.
+          </p>
         </div>
       </section>
 
-      <section className="section-pad bg-light px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <div className="space-y-8">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-blue">Tell Us About Your Project</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-                Instead of a boring contact form. Let’s ask meaningful questions.
-              </h2>
-            </div>
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
-              <div className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">Your Progress</div>
-              <div className="rounded-full bg-slate-100/80 p-1">
-                <div className="h-2 rounded-full bg-blue transition-all" style={{ width: "35%" }} />
+      {/* Form & Direct Contact Info */}
+      <section className="section-pad bg-white px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Inquiry Form */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-md text-left">
+            <h2 className="font-display text-2xl font-bold text-navy">Project Inquiry Form</h2>
+            <p className="mt-2 text-sm text-slate-600">Fill in the details below to request a strategic consultation.</p>
+
+            {success ? (
+              <div className="mt-8 rounded-xl bg-green/10 border border-green/30 p-8 text-center">
+                <CheckCircle2 className="h-10 w-10 text-green mx-auto mb-3" />
+                <h3 className="font-display text-xl font-bold text-navy">Message Received!</h3>
+                <p className="mt-2 text-sm text-slate-600">Thank you for reaching out. A growth strategist will review your inquiry and get back to you shortly.</p>
               </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                {[
-                  "Project details",
-                  "Strategy & budget",
-                  "Submit",
-                ].map((label, index) => (
-                  <div key={label} className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 text-sm font-semibold text-slate-700">
-                    {label}
+            ) : (
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none"
+                      placeholder="Your Name"
+                    />
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Need help faster?</p>
-              <p className="mt-4 text-base leading-7 text-slate-700">
-                You can also reach us directly by email, phone, or WhatsApp if you want a faster reply.
-              </p>
-              <div className="mt-6 grid gap-4">
-                {[
-                  ["Email", contactDetails.email, Mail],
-                  ["Phone", contactDetails.phone, Phone],
-                  ["WhatsApp", contactDetails.whatsapp, MessageCircle],
-                ].map(([label, value, Icon]) => (
-                  <div key={label} className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                    <div className="flex items-center gap-3 text-slate-700">
-                      <Icon className="h-5 w-5 text-blue" />
-                      <div>
-                        <p className="text-sm font-semibold">{label}</p>
-                        <p className="mt-1 text-sm text-slate-500">{value}</p>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Email Address *</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none"
+                      placeholder="name@company.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Phone / WhatsApp *</label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none"
+                      placeholder="+92 300 0669541"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Company Name</label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none"
+                      placeholder="Company Name"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Primary Service Needed</label>
+                    <select
+                      value={formData.service_interest}
+                      onChange={(e) => setFormData({ ...formData, service_interest: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none bg-white"
+                    >
+                      <option>Digital Growth System</option>
+                      <option>Website Development</option>
+                      <option>AI & Automation</option>
+                      <option>Search Engine Optimization</option>
+                      <option>Performance Marketing</option>
+                      <option>Social Media Marketing</option>
+                      <option>Brand Identity</option>
+                      <option>Online Booking Systems</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Estimated Budget</label>
+                    <select
+                      value={formData.budget}
+                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none bg-white"
+                    >
+                      <option>&lt; $5,000</option>
+                      <option>$5,000 - $10,000</option>
+                      <option>$10,000 - $25,000</option>
+                      <option>$25,000+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">Project Details *</label>
+                  <textarea
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="mt-1 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-cyan focus:outline-none"
+                    placeholder="Tell us about your goals, current challenges, and target launch timeframe..."
+                  />
+                </div>
+
+                {errorMsg && (
+                  <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-xs text-amber-800 flex items-start gap-2">
+                    <AlertCircle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p>{errorMsg}</p>
+                      <div className="mt-2 flex gap-4 font-bold text-navy">
+                        <a href={`https://wa.me/${contactDetails.whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan">WhatsApp Direct</a>
+                        <a href={`mailto:${contactDetails.email}`} className="underline hover:text-cyan">Email Direct</a>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-cyan px-6 py-3.5 text-sm font-bold text-navy hover:bg-green transition disabled:opacity-50"
+                >
+                  <Send className="h-4 w-4" />
+                  {loading ? "Sending..." : "Submit Inquiry"}
+                </button>
+              </form>
+            )}
           </div>
 
-          <ContactForm sourcePage="Contact" />
-        </div>
-      </section>
+          {/* Contact Details Column */}
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 shadow-sm text-left flex flex-col justify-between">
+            <div>
+              <h3 className="font-display text-2xl font-bold text-navy">Direct Contact Info</h3>
+              <p className="mt-2 text-sm text-slate-600">Prefer direct communication? Reach us through any channel below.</p>
 
-      <section className="section-pad bg-navy px-4 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan/80">Why Businesses Choose Selmore</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                Because choosing a digital partner is a long-term decision.
-              </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-                We're not interested in quick wins. We're interested in building systems that continue creating value long after launch.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {reasons.map((reason) => (
-                <div key={reason} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                  <p className="text-base font-semibold text-white">✔ {reason}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-light px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-blue">Frequently Asked Questions</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-                We answer the questions that matter before you reach out.
-              </h2>
-              <p className="mt-4 text-base leading-7 text-slate-600">
-                Knowing what to expect makes the next step easier. Here’s how our Growth Session works.
-              </p>
-            </div>
-            <div>
-              <FAQAccordion faqs={faqs} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-navy px-4 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan/80">Global Reach. Personal Partnership.</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                Although our team operates from Pakistan, our work has always been global.
-              </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-                We've collaborated with businesses across the United States, Canada, the United Kingdom, Australia, Europe, and the Middle East. Distance has never been a barrier to delivering exceptional digital experiences.
-              </p>
-              <p className="mt-5 text-lg leading-8 text-slate-300">
-                Technology makes collaboration seamless. Relationships make it meaningful.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-950">
-                <svg viewBox="0 0 640 420" className="h-full w-full">
-                  <rect width="640" height="420" fill="rgba(15, 23, 42, 0.9)" />
-                  <path d="M60 240 C 110 180, 180 180, 230 220" fill="none" stroke="#22d3ee" strokeWidth="2" opacity="0.6" />
-                  <path d="M280 120 C 340 80, 420 90, 480 130" fill="none" stroke="#38bdf8" strokeWidth="2" opacity="0.6" />
-                  <path d="M120 300 C 200 340, 310 320, 380 280" fill="none" stroke="#22c55e" strokeWidth="2" opacity="0.6" />
-                  <circle cx="70" cy="245" r="8" fill="#22d3ee" />
-                  <circle cx="230" cy="220" r="8" fill="#38bdf8" />
-                  <circle cx="480" cy="130" r="8" fill="#22d3ee" />
-                  <circle cx="380" cy="280" r="8" fill="#22c55e" />
-                  <circle cx="520" cy="180" r="8" fill="#60a5fa" />
-                  <circle cx="140" cy="80" r="8" fill="#a5b4fc" />
-                </svg>
-              </div>
-              <div className="mt-6 grid gap-3">
-                {regions.map((region) => (
-                  <div key={region} className="rounded-2xl bg-slate-900/90 px-4 py-3 text-sm text-slate-200">
-                    {region}
+              <div className="mt-8 space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 text-cyan shrink-0">
+                    <Phone className="h-5 w-5" />
                   </div>
-                ))}
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Phone & WhatsApp</span>
+                    <p className="mt-1 text-base font-bold text-navy">
+                      <a href={`tel:${contactDetails.phone}`} className="hover:text-cyan">{contactDetails.phone}</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 text-cyan shrink-0">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Email</span>
+                    <p className="mt-1 text-base font-bold text-navy">
+                      <a href={`mailto:${contactDetails.email}`} className="hover:text-cyan">{contactDetails.email}</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 text-cyan shrink-0">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Service Coverage</span>
+                    <p className="mt-1 text-base font-bold text-navy">{contactDetails.location}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="section-pad bg-white px-4 text-navy sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-10 text-center shadow-soft">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-blue">Before We Talk...</p>
-            <h2 className="mt-5 font-display text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-              We have one question. What are you trying to build?
-            </h2>
-            <div className="mt-6 space-y-4 text-lg leading-8 text-slate-600">
-              <p>Maybe it's a new business. Maybe it's a stronger brand. Maybe it's a website that finally reflects the quality of your company.</p>
-              <p>Maybe it's an AI solution that gives your team back valuable time. Whatever it is... we'd love to help you build it.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue/10 via-cyan/10 to-slate-900 px-4 py-20 text-white sm:px-6 lg:px-8">
-        <div className="absolute inset-0 opacity-50 [background:radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(34,197,94,0.18),transparent_30%)]" />
-        <div className="relative mx-auto max-w-7xl">
-          <div className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-10 text-center shadow-soft backdrop-blur-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan/80">Your Next Stage of Growth Starts With One Conversation.</p>
-            <h2 className="mt-5 font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-              You don't need all the answers today. You just need the right partner to help you find them.
-            </h2>
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-              Let's explore what's possible together.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a href="#contact-form" className="inline-flex items-center justify-center rounded-full bg-cyan px-8 py-4 text-sm font-semibold text-navy transition hover:bg-blue">
-                Book Your Growth Session
-              </a>
-              <a href="/growth-systems" className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition hover:border-cyan hover:text-cyan">
-                Explore Our Growth Systems
+            <div className="mt-10 rounded-xl bg-navy p-6 text-white">
+              <h4 className="font-display text-lg font-bold text-cyan flex items-center gap-2">
+                <MessageSquare className="h-5 w-5" /> Need Quick Answers?
+              </h4>
+              <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                Connect directly with a growth architect on WhatsApp for rapid response.
+              </p>
+              <a
+                href={`https://wa.me/${contactDetails.whatsapp.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-green px-4 py-2 text-xs font-bold text-navy hover:bg-cyan transition"
+              >
+                Chat on WhatsApp
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <CTASection />
+      <CTASection
+        title="Schedule a Strategic Growth Session"
+        description="Book a dedicated 30-minute consultation with our lead growth architect."
+        primaryLabel="Book Growth Session"
+        primaryPath="/book-growth-session"
+        secondaryLabel="Explore Work"
+        secondaryPath="/work"
+      />
     </>
   );
 }

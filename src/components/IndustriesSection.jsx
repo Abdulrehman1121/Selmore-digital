@@ -127,14 +127,14 @@ export default function IndustriesSection() {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="industries-section bg-light px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center py-10 md:py-16"
-    >
-      <div className="mx-auto max-w-7xl w-full bg-white rounded-[2.5rem] border border-slate-200/80 shadow-soft p-8 md:p-12 lg:p-16">
+    <section className="industries-section bg-light px-4 sm:px-6 lg:px-8 overflow-hidden py-10 md:py-16">
+      <div
+        ref={containerRef}
+        className="mx-auto max-w-7xl w-full bg-white rounded-[2.5rem] border border-slate-200/80 shadow-soft p-8 md:p-12 lg:p-16 flex items-center min-h-[90vh]"
+      >
         
         {/* Desktop Layout: Split Pinned Stack */}
-        <div className="hidden lg:grid grid-cols-[0.45fr_0.55fr] gap-16 items-center min-h-[500px]">
+        <div className="hidden lg:grid w-full grid-cols-[0.45fr_0.55fr] gap-16 items-center min-h-[500px]">
           
           {/* Left Column: Fixed Header copy & active counter */}
           <div ref={leftColRef} className="flex flex-col items-start text-left h-full justify-center">
@@ -212,7 +212,7 @@ export default function IndustriesSection() {
         </div>
 
         {/* Mobile / Tablet Layout: Non-pinned Single Column Grid */}
-        <div className="block lg:hidden text-center">
+        <div className="block lg:hidden text-center w-full">
           <div className="mb-12 max-w-3xl mx-auto flex flex-col items-center">
             <p className="industries-eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-blue mb-4 opacity-0">
               Industries

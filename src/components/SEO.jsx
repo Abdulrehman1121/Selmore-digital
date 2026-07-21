@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-
-const defaultDescription =
-  "Selmore Digital helps businesses build stronger brands, generate qualified leads, and automate operations through intelligent marketing, modern websites, and AI-powered technology.";
-const siteUrl = "https://selmoredigital.com";
+import { defaultSEO } from "../data/seoData.js";
 
 function upsertMeta(selector, attributes) {
   let element = document.head.querySelector(selector);
@@ -15,18 +12,25 @@ function upsertMeta(selector, attributes) {
 }
 
 export default function SEO({
-  title = "Selmore Digital | Digital Growth & AI Automation Partner",
-  description = defaultDescription,
+  title = defaultSEO.title,
+  description = defaultSEO.description,
   path = "/",
   schema = [],
+  image = defaultSEO.defaultOgImage,
+  type = "website",
 }) {
+  const cleanPath = path === "/" ? "" : path.replace(/\/+$/, "");
+  const canonicalUrl = `${defaultSEO.canonicalHost}${cleanPath}`;
+
   useEffect(() => {
-    const canonicalUrl = `${siteUrl}${path}`;
     document.title = title;
+
     upsertMeta('meta[name="description"]', {
       identity: { name: "description" },
       values: { content: description },
     });
+
+    // Open Graph
     upsertMeta('meta[property="og:title"]', {
       identity: { property: "og:title" },
       values: { content: title },
@@ -39,6 +43,34 @@ export default function SEO({
       identity: { property: "og:url" },
       values: { content: canonicalUrl },
     });
+    upsertMeta('meta[property="og:type"]', {
+      identity: { property: "og:type" },
+      values: { content: type },
+    });
+    upsertMeta('meta[property="og:image"]', {
+      identity: { property: "og:image" },
+      values: { content: `${defaultSEO.canonicalHost}${image}` },
+    });
+
+    // Twitter Card
+    upsertMeta('meta[name="twitter:card"]', {
+      identity: { name: "twitter:card" },
+      values: { content: "summary_large_image" },
+    });
+    upsertMeta('meta[name="twitter:site"]', {
+      identity: { name: "twitter:site" },
+      values: { content: defaultSEO.twitterHandle },
+    });
+    upsertMeta('meta[name="twitter:title"]', {
+      identity: { name: "twitter:title" },
+      values: { content: title },
+    });
+    upsertMeta('meta[name="twitter:description"]', {
+      identity: { name: "twitter:description" },
+      values: { content: description },
+    });
+
+    // Canonical tag
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");
@@ -46,7 +78,7 @@ export default function SEO({
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", canonicalUrl);
-  }, [description, path, title]);
+  }, [description, path, title, image, type, canonicalUrl]);
 
   const schemaItems = Array.isArray(schema) ? schema : [schema];
 
@@ -54,7 +86,7 @@ export default function SEO({
     <>
       {schemaItems.filter(Boolean).map((item, index) => (
         <script
-          key={`${path}-${index}`}
+          key={`${canonicalUrl}-schema-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         />

@@ -1,0 +1,33 @@
+# Selmore Digital - Bluehost Apache Configuration
+
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/services/website-design-development/?$ /growth-systems/website-development
+  RedirectMatch 301 ^/services/ai-solutions-automation/?$ /growth-systems/ai-automation
+  RedirectMatch 301 ^/services/search-engine-optimization/?$ /growth-systems/seo
+  RedirectMatch 301 ^/services/performance-marketing/?$ /growth-systems/performance-marketing
+  RedirectMatch 301 ^/services/social-media-marketing/?$ /growth-systems/social-media-marketing
+  RedirectMatch 301 ^/services/brand-identity-digital-experience/?$ /growth-systems/brand-identity-digital-experience
+  RedirectMatch 301 ^/services/online-booking-systems/?$ /growth-systems/online-booking-systems
+  RedirectMatch 301 ^/services/?$ /growth-systems
+  RedirectMatch 301 ^/portfolio/?$ /work
+  RedirectMatch 301 ^/selected-work/?$ /work
+  RedirectMatch 301 ^/case-studies/?$ /work
+  RedirectMatch 301 ^/blog/?$ /growth-journal
+  RedirectMatch 301 ^/insights/?$ /growth-journal
+  RedirectMatch 301 ^/digital-growth-strategy/?$ /growth-systems/digital-growth-system
+  RedirectMatch 301 ^/book-consultation/?$ /book-growth-session
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Fallback to index.html for static SPA routes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
